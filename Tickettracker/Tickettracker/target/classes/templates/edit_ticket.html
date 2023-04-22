@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Ticket Tracking Application</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+textarea {
+	overflow-y: scroll;
+	height: 200px;
+	resize: none;
+	width: 100%;
+}
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<a class="navbar-brand" href="#">Ticket Tracking Application</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav">
+				<a th:href="@{/tickets}" class="btn btn-primary"><i
+					class="fa fa-home"></i>Tickets</a>
+			</div>
+			<div>
+				<a th:href="@{/tickets/new}" class="btn btn-primary"><i
+					class="fa fa-plus" aria-hidden="true"></i> New Ticket</a>
+			</div>
+		</div>
+	</nav>
+
+	<br>
+	<br>
+
+	<div class="container">
+		<div class="row">
+			<div
+				class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<br>
+				<h3 class="text-center "
+					style="color: white; background-color: #3B71CA">Edit Ticket</h3>
+				<div class="card-body">
+					<form th:action="@{/tickets/{id} (id=${ticket.id})}"
+						th:object="${ticket}" method="POST">
+						<div class="form-group">
+							<label> <b>Ticket id</b>
+							</label> <input type="text" name="ticket_id" th:field="*{id}"
+								class="form-control" readonly />
+						</div>
+
+
+						<div class="form-group">
+							<label><b>Ticket Title</b> </label> <input type="text"
+								name="firstName" th:field="*{ticket_title}" class="form-control"
+								placeholder="Enter Ticket Title" required
+								title="Please fill out the ticket title" />
+						</div>
+
+						<div class="form-group">
+							<label> <b>Ticket Description</b>
+							</label>
+
+							<textarea name="ticket_desc" class="form-control"
+								th:field="*{ticket_desc}" placeholder="Enter Ticket Description"
+								required title="Please fill out ticket description">
+								 </textarea>
+
+						</div>
+
+						<div class="form-group">
+							<label><b> Ticket Date</b> </label> <input type="date"
+								name="Ticket_date" th:field="*{Ticket_date}"
+								class="form-control" style="width: 30%;"
+								placeholder="Enter Ticket Date" required
+								title="Please fill out the ticket date" />
+
+
+						</div>
+
+						<div class="box-footer  text-center">
+							<button type="submit" class="btn btn-primary">
+								<i class="fa fa-check" style="font-size: 20px; color: green"></i>Submit
+							</button>
+							&nbsp;&nbsp;<a class="btn btn-primary " th:href="@{/tickets}"><i
+								class="fa fa-ban" style="font-size: 15px; color: red"> </i>&nbsp;Cancel</a>
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

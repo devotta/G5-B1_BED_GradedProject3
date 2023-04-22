@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Ticket Tracker Application</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<style>
+th {
+	background-color: #3B71CA;
+	color: white;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+</style>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<a class="navbar-brand" href="#">Ticket Tracking Application</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav">
+				<a th:href="@{/tickets}" class="btn btn-primary"><i
+					class="fa fa-home"></i>Tickets</a>
+			</div>
+			<div class="navbar-nav">
+				<a th:href="@{/tickets/new}" class="btn btn-primary"><i
+					class="fa fa-plus" aria-hidden="true"></i> New Ticket</a>
+			</div>
+		</div>
+	</nav>
+
+
+	<div class="container">
+		<br>
+		<div class="row">
+			<h3>List of Tickets</h3>
+			<br>
+		</div>
+		<div class="row">
+
+			<form id="frm_ticketlist" th:action="@{/search}" method="get">
+				<input type="text" name="keyword" th:value="${keyword}"
+					placeholder="Search by ticket title & ticket description" size="40">
+				<button type="submit" class="btn btn-primary">
+					<i class="fa fa-search"></i>&nbsp;Search
+				</button>
+			</form>
+
+			<table class="table table-hover table-border">
+				<thead class="bg-primary	">
+					<tr>
+						<th class="col-md-1">Ticket #</th>
+						<th class="col-md-2">Ticket Title</th>
+						<th class="col-md-4">Ticket Short Description</th>
+						<th class="col-md-2">Ticket Created on</th>
+						<th class="col-md-3"><center>Actions</center></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="ticket: ${tickets}">
+						<td th:text="${ticket.id}"></td>
+						<td th:text="${ticket.ticket_title}"></td>
+						<td th:text="${ticket.Ticket_desc}"></td>
+						<!-- <td th:text="${ticket.Ticket_date}" ></td> -->
+						<td th:text="${#dates.format(ticket.Ticket_date, 'dd-MM-yyyy')}"></td>
+
+						<td class="text-center  "><a
+							th:href="@{/tickets/edit/{id}(id=${ticket.id})}"
+							class="btn btn-primary"><i class="fa fa-edit">&nbsp;Edit</i></a>
+							<a id="rowdel" th:href="@{/tickets/{id}(id=${ticket.id})}"
+							class="btn btn-danger"><i class="fa fa-trash"
+								aria-hidden="true"></i>&nbsp;Delete</a> <a
+							th:href="@{/tickets/view/{id}(id=${ticket.id})}"
+							class="btn btn-info"><i class="fa fa-eye"></i>&nbsp;View</a></td>
+					</tr>
+
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+</body>
+
+
+
+
+</html>
