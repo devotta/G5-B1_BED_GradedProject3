@@ -1,6 +1,7 @@
 package com.gl.tickettracker.controller;
 
 import java.util.List;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,7 +50,9 @@ public class TicketController {
 
 		// create ticket object to hold ticket form data
 		Ticket ticket = new Ticket();
+
 		model.addAttribute("ticket", ticket);
+
 		return "create_ticket";
 
 	}
@@ -83,6 +86,7 @@ public class TicketController {
 		existingTicket.setTicket_title(ticket.getTicket_title());
 		existingTicket.setTicket_desc(ticket.getTicket_desc());
 		existingTicket.setTicket_date(ticket.getTicket_date());
+		existingTicket.setTicket_content(ticket.getTicket_content());
 
 		// save updated ticket object
 		ticketService.updateTicket(existingTicket);

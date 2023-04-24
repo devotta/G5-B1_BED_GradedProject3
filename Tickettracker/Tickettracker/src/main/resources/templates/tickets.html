@@ -80,6 +80,7 @@ tr:nth-child(even) {
 							th:href="@{/tickets/edit/{id}(id=${ticket.id})}"
 							class="btn btn-primary"><i class="fa fa-edit">&nbsp;Edit</i></a>
 							<a id="rowdel" th:href="@{/tickets/{id}(id=${ticket.id})}"
+							;
 							class="btn btn-danger"><i class="fa fa-trash"
 								aria-hidden="true"></i>&nbsp;Delete</a> <a
 							th:href="@{/tickets/view/{id}(id=${ticket.id})}"
@@ -93,8 +94,5 @@ tr:nth-child(even) {
 	</div>
 
 </body>
-
-
-
 
 </html>

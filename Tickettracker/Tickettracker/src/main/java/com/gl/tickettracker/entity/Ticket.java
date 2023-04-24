@@ -27,6 +27,9 @@ public class Ticket {
 	@Column(name = "Ticket_desc", columnDefinition = "TEXT")
 	private String ticket_desc;
 
+	@Column(name = "Ticket_content", columnDefinition = "TEXT")
+	private String ticket_content;
+
 	@Column(name = "Ticket_date")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -36,10 +39,12 @@ public class Ticket {
 
 	}
 
-	public Ticket(String ticket_title, String ticket_desc, Date ticket_date) {
+	public Ticket(Long id, String ticket_title, String ticket_desc, String ticket_content, Date ticket_date) {
 		super();
+		this.id = id;
 		this.ticket_title = ticket_title;
 		this.ticket_desc = ticket_desc;
+		this.ticket_content = ticket_content;
 		this.ticket_date = ticket_date;
 	}
 
@@ -73,6 +78,14 @@ public class Ticket {
 
 	public void setTicket_date(Date ticket_date) {
 		this.ticket_date = ticket_date;
+	}
+
+	public String getTicket_content() {
+		return ticket_content;
+	}
+
+	public void setTicket_content(String ticket_content) {
+		this.ticket_content = ticket_content;
 	}
 
 }
